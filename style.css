@@ -1,0 +1,34 @@
+body {
+    font-family: sans-serif;
+    background-color: #cbfaf1;
+}
+
+#main-grid {
+    width: 98%;
+    margin: auto;
+    border-spacing: 5px;
+    border: 4px solid #22ffd6;
+    background-color: #a1fdec;
+}
+
+#header {
+    padding: 2%;
+    background-color: #22ffd6
+}
+
+#image-container{
+    padding: 2%;
+    background-color: #22ffd6
+}
+
+.image {
+    text-align:;
+}
+
+.left-alignment {
+    float: left;
+}
+
+.right-alignment {
+    float: right;
+}
