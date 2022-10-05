@@ -19,26 +19,65 @@
         <tr>
             <td id="image-container">
                 <div class="image">
-                    <object type="image/svg+xml" data="pic.svg" width="50%", height="50%">
+                    <object type="image/svg+xml" data="pic.svg" width="100%", height="100%">
                         Your browser does not support svg
                     </object>
                 </div>
             </td>
 
-            <td>Bottons here</td>  
+            <td id="input-container">
+                <form method="GET">
+                    <label>X: </label>
+                    <input class="radio" type="radio" name="x" value="-2">
+                        <label class="radio-label">-2</label> 
+                    <input class="radio" type="radio" name="x" value="-1.5">
+                        <label class="radio-label">-1.5</label>
+                    <input class="radio" type="radio" name="x" value="-1">
+                        <label class="radio-label">-1</label>
+                    <input class="radio" type="radio" name="x" value="-0.5">
+                        <label class="radio-label">-0.5</label>
+                    <input class="radio" type="radio" name="x" value="0">
+                        <label class="radio-label">0</label>
+                    <input class="radio" type="radio" name="x" value="0.5">
+                        <label class="radio-label">0.5</label>
+                    <input class="radio" type="radio" name="x" value="1">
+                        <label class="radio-label">1</label>
+                    <input class="radio" type="radio" name="x" value="1.5">
+                        <label class="radio-label">1.5</label>
+                    <input class="radio" type="radio" name="x" value="2">
+                        <label class="radio-label">2</label>
+                    <br>
+
+                    <label>Y: </label>
+                    <input class="text-field" type="text" name="y" maxlength="10" autocomplete="off" placeholder="Number from -5 to 5">
+                    <br>
+
+                    <label>R: </label>
+                    <input class="button" type="button" name="r" value="1">
+                    <input class="button" type="button" name="r" value="2">
+                    <input class="button" type="button" name="r" value="3">
+                    <input class="button" type="button" name="r" value="4">
+                    <input class="button" type="button" name="r" value="5">
+                    <br>
+                    <br>
+
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </form>
+            </td>  
         </tr>
         <!--/body-->
         <!--results-->
         <tr>
             <td colspan="2">
-                <table id="result-table" border="1">
+                <table id="result-table">
                     <tr class="table-header">
                         <th class="coords-col">X</th>
                         <th class="coords-col">Y</th>
                         <th class="coords-col">R</th>
                         <th class="time-col">Current time</th>
                         <th class="time-col">Execution time</th>
-                        <th class="hitres-col">Hit result</th>
+                        <th class="hit-col">Hit result</th>
                     </tr>
                 </table>
             </td>
