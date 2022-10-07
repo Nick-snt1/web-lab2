@@ -19,7 +19,7 @@
         <tr>
             <td id="image-container">
                 <div class="image">
-                    <object type="image/svg+xml" data="pic.svg" width="100%", height="100%">
+                    <object type="image/svg+xml" data="images/pic.svg" width="100%", height="100%">
                         Your browser does not support svg
                     </object>
                 </div>
@@ -27,37 +27,29 @@
 
             <td id="input-container">
                 <form method="GET">
-                    <label>X: </label>
-                    <input class="radio" type="radio" name="x" value="-2">
-                        <label class="radio-label">-2</label> 
-                    <input class="radio" type="radio" name="x" value="-1.5">
-                        <label class="radio-label">-1.5</label>
-                    <input class="radio" type="radio" name="x" value="-1">
-                        <label class="radio-label">-1</label>
-                    <input class="radio" type="radio" name="x" value="-0.5">
-                        <label class="radio-label">-0.5</label>
-                    <input class="radio" type="radio" name="x" value="0">
-                        <label class="radio-label">0</label>
-                    <input class="radio" type="radio" name="x" value="0.5">
-                        <label class="radio-label">0.5</label>
-                    <input class="radio" type="radio" name="x" value="1">
-                        <label class="radio-label">1</label>
-                    <input class="radio" type="radio" name="x" value="1.5">
-                        <label class="radio-label">1.5</label>
-                    <input class="radio" type="radio" name="x" value="2">
-                        <label class="radio-label">2</label>
+                    <label class="head-label">X: </label>
+                    <input class="radio" type="radio" name="x" value="-2">  <label class="radio-label">-2</label> 
+                    <input class="radio" type="radio" name="x" value="-1.5"><label class="radio-label">-1.5</label>
+                    <input class="radio" type="radio" name="x" value="-1">  <label class="radio-label">-1</label>
+                    <input class="radio" type="radio" name="x" value="-0.5"><label class="radio-label">-0.5</label>
+                    <input class="radio" type="radio" name="x" value="0">   <label class="radio-label">0</label>
+                    <input class="radio" type="radio" name="x" value="0.5"> <label class="radio-label">0.5</label>
+                    <input class="radio" type="radio" name="x" value="1">   <label class="radio-label">1</label>
+                    <input class="radio" type="radio" name="x" value="1.5"> <label class="radio-label">1.5</label>
+                    <input class="radio" type="radio" name="x" value="2">   <label class="radio-label">2</label>
                     <br>
 
-                    <label>Y: </label>
+                    <label class="head-label">Y: </label>
                     <input class="text-field" type="text" name="y" maxlength="10" autocomplete="off" placeholder="Number from -5 to 5">
                     <br>
 
-                    <label>R: </label>
-                    <input class="button" type="button" name="r" value="1">
-                    <input class="button" type="button" name="r" value="2">
-                    <input class="button" type="button" name="r" value="3">
-                    <input class="button" type="button" name="r" value="4">
-                    <input class="button" type="button" name="r" value="5">
+                    <label class="head-label">R: </label>
+                    <label><input class="checkbox" type="checkbox" name="r" value="1" onclick="onlyOne(this)"><span class="button">1</span></label>
+                    <label><input class="checkbox" type="checkbox" name="r" value="2" onclick="onlyOne(this)"><span class="button">2</span></label>
+                    <label><input class="checkbox" type="checkbox" name="r" value="3" onclick="onlyOne(this)"><span class="button">3</span></label>
+                    <label><input class="checkbox" type="checkbox" name="r" value="4" onclick="onlyOne(this)"><span class="button">4</span></label>
+                    <label><input class="checkbox" type="checkbox" name="r" value="5" onclick="onlyOne(this)"><span class="button">5</span></label>
+
                     <br>
                     <br>
 
@@ -84,5 +76,7 @@
         </tr>
         <!--results-->
     </table>
+
+    <script src="scripts/on_click.js"></script>
 </body>    
 </html>
