@@ -26,35 +26,38 @@
             </td>
 
             <td id="input-container">
-                <form method="GET">
+                <form action="" method="GET" novalidate>
                     <label class="head-label">X: </label>
-                    <input class="radio" type="radio" name="x" value="-2">  <label class="radio-label">-2</label> 
+                    <input class="radio" type="radio" name="x" value="-2" required>  <label class="radio-label">-2</label> 
                     <input class="radio" type="radio" name="x" value="-1.5"><label class="radio-label">-1.5</label>
                     <input class="radio" type="radio" name="x" value="-1">  <label class="radio-label">-1</label>
                     <input class="radio" type="radio" name="x" value="-0.5"><label class="radio-label">-0.5</label>
-                    <input class="radio" type="radio" name="x" value="0">   <label class="radio-label">0</label>
+                    <input class="radio" type="radio" name="x" value="0" checked>  <label class="radio-label">0</label>
                     <input class="radio" type="radio" name="x" value="0.5"> <label class="radio-label">0.5</label>
-                    <input class="radio" type="radio" name="x" value="1">   <label class="radio-label">1</label>
+                    <input class="radio" type="radio" name="x" value="1" >  <label class="radio-label">1</label>
                     <input class="radio" type="radio" name="x" value="1.5"> <label class="radio-label">1.5</label>
                     <input class="radio" type="radio" name="x" value="2">   <label class="radio-label">2</label>
                     <br>
+                    <br>
 
                     <label class="head-label">Y: </label>
-                    <input class="text-field" type="text" name="y" maxlength="10" autocomplete="off" placeholder="Number from -5 to 5">
+                    <input class="text-field" type="number" id="y-field" name="y" maxlength="6" min="-5" max="5" step="0.1" 
+                           autocomplete="off" placeholder="-5...5"  value="0" required>
                     <br>
-
+                    <br>
+                    
                     <label class="head-label">R: </label>
-                    <label><input class="checkbox" type="checkbox" name="r" value="1" onclick="onlyOne(this)"><span class="button">1</span></label>
-                    <label><input class="checkbox" type="checkbox" name="r" value="2" onclick="onlyOne(this)"><span class="button">2</span></label>
-                    <label><input class="checkbox" type="checkbox" name="r" value="3" onclick="onlyOne(this)"><span class="button">3</span></label>
-                    <label><input class="checkbox" type="checkbox" name="r" value="4" onclick="onlyOne(this)"><span class="button">4</span></label>
-                    <label><input class="checkbox" type="checkbox" name="r" value="5" onclick="onlyOne(this)"><span class="button">5</span></label>
+                    <label class="a"><input class="checkbox" type="checkbox" name="r" value="1" onclick="onlyOne(this)" checked><span class="button-label">1</span></label>
+                    <label class="a"><input class="checkbox" type="checkbox" name="r" value="2" onclick="onlyOne(this)" ><span class="button-label">2</span></label>
+                    <label class="a"><input class="checkbox" type="checkbox" name="r" value="3" onclick="onlyOne(this)" ><span class="button-label">3</span></label>
+                    <label class="a"><input class="checkbox" type="checkbox" name="r" value="4" onclick="onlyOne(this)" ><span class="button-label">4</span></label>
+                    <label class="a"><input class="checkbox" type="checkbox" name="r" value="5" onclick="onlyOne(this)" ><span class="button-label">5</span></label>
 
                     <br>
                     <br>
 
-                    <input type="submit" value="Submit">
-                    <input type="reset" value="Reset">
+                    <input class="button" type="submit" value="Submit">
+                    <input class="button" type="reset" value="Reset">
                 </form>
             </td>  
         </tr>
@@ -77,6 +80,7 @@
         <!--results-->
     </table>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="scripts/on_click.js"></script>
 </body>    
 </html>
