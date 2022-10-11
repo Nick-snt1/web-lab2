@@ -5,11 +5,19 @@ body {
 }
 
 #main-grid {
-    width: 98%;
+    width: 100%;
     margin: auto;
     border-spacing: 5px;
     border: 4px solid #22ffd6;
     background-color: #a1fdec;
+}
+
+#input-grid {
+    width: 100%;
+}
+
+#input-grid td {
+    padding: 2%;
 }
 
 #result-table{
@@ -17,30 +25,39 @@ body {
     margin: auto;
     text-align: center;
     border-collapse: collapse;
-    border-bottom: 2px solid black;
     background-color: #22ffd6;
 }
 
-th, td {
-    border-bottom: 1px solid #ddd;
+#result-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+#result-table tr:nth-child(even) {
+    background-color: #a1fdec;
+}
+
+.scroll-container {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 input:invalid {
-    background-color: ivory;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
-    outline: 2px solid red;
     border-radius: 5px;
 }
 
 .invalid {
-    background-color: ivory;
     border: none;
-    outline: 2px solid red;
-    border-radius: 5px;
-}
+    outline: 4px solid red;
+    padding-top: 9px;
+    padding-bottom: 9px;
 
-#result-table:tr:hover {
-    background-color: #f5f5f5;
+    border-radius: 5px;
 }
 
 #header {
@@ -54,27 +71,55 @@ input:invalid {
 }
 
 .radio-label {
-    font-size: 15px;
+    font-weight: bold;
 }
 
-.checkbox {
+input[type="checkbox"] {
     display: none;
 }
 
 .button-label {
-    padding: 5px;
-    border: 1px solid #ccc;
-    background: gainsboro;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    background: #f5f5f5;
 }
 
-.checkbox:checked + .button-label {
+.button {
+    background-color: #f5f5f5;
+
+    border: 2px solid #555555;
+
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #555555;
+    color: white;
+}
+
+input[type="checkbox"]:checked + .button-label {
     background:#22ffd6;
 }
 
-.scroll-container {
-    height: 10%;
-    overflow-y:scroll;
+#y-field {
+    
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;
+    border-radius: 5px;
 }
+
 
 
 #image-container{

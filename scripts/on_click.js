@@ -1,7 +1,7 @@
 function onlyOne(checkbox) {
     document.getElementsByName('r').forEach(item => { if (item !== checkbox) item.checked = false })
     
-    $('.checkbox:checked').is(":checked") ? $('.a').removeClass('invalid') : $('.a').addClass('invalid');
+    $('input[type="checkbox"]:checked').is(":checked") ? $('.a').removeClass('invalid') : $('.a').addClass('invalid');
 
 }
 
@@ -9,7 +9,7 @@ function onlyOne(checkbox) {
 
 
 function validate() {
-    return $(".radio:checked").length === 1 && document.getElementById("y-field").validity.valid && $('.checkbox:checked').is(":checked"); 
+    return $("input[type='radio']:checked").length === 1 && document.getElementById("y-field").validity.valid && $('input[type="checkbox"]:checked').is(":checked"); 
 }
 
 $('form').on('submit', function (event) {
