@@ -26,7 +26,7 @@
             </td>
 
             <td id="input-container">
-                <form action="" method="GET" novalidate>
+                <form action="php/main.php" method="get" novalidate>
                     <label class="head-label">X: </label>
                     <input class="radio" type="radio" name="x" value="-2" required>  <label class="radio-label">-2</label> 
                     <input class="radio" type="radio" name="x" value="-1.5"><label class="radio-label">-1.5</label>
@@ -65,16 +65,18 @@
         <!--results-->
         <tr>
             <td colspan="2">
-                <table id="result-table">
-                    <tr class="table-header">
-                        <th class="coords-col">X</th>
-                        <th class="coords-col">Y</th>
-                        <th class="coords-col">R</th>
-                        <th class="time-col">Current time</th>
-                        <th class="time-col">Execution time</th>
-                        <th class="hit-col">Hit result</th>
-                    </tr>
-                </table>
+                <div class="scroll-container">
+                    <table id="result-table">
+                        <tr class="table-header">
+                            <th class="coords-col">X</th>
+                            <th class="coords-col">Y</th>
+                            <th class="coords-col">R</th>
+                            <th class="hit-col">Hit result</th>
+                            <th class="time-col">Current time</th>
+                            <th class="time-col">Execution time</th>
+                        </tr>
+                    </table>
+                </div>
             </td>
         </tr>
         <!--results-->

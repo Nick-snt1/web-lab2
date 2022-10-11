@@ -6,32 +6,33 @@ function onlyOne(checkbox) {
 }
 
 
-$(function () {
 
-    function validate() {
-        return $(".radio:checked").length === 1 && document.getElementById("y-field").validity.valid && $('.checkbox:checked').is(":checked"); 
-    }
 
-    $('form').on('submit', function (event) {
-        event.preventDefault();
-        if (!validate()) return;
-        $.ajax({
-            url: 'php/main.php',
-            method: 'GET',
-            data: $(this).serialize() + '&timezone=' + new Date().getTimezoneOffset(),
-            dataType: "json",
-            beforeSend: () => $('.button').attr('disabled', 'disabled'),
-            success: data => {
-                $('.button').attr('disabled', false);
-                if (data.validate) 
-                    $('#result-table').append('<tr>'
-                    + '<td>' + data.x + '</td>'
-                    + '<td>' + data.y + '</td>'
-                    + '<td>' + data.r + '</td>'
-                    + '<td>' + data.curtime + '</td>'
-                    + '<td>' + data.exectime + '</td>'
-                    + '<td>' + data.hitres + '</td>');    
-            }
-        });
+function validate() {
+    return $(".radio:checked").length === 1 && document.getElementById("y-field").validity.valid && $('.checkbox:checked').is(":checked"); 
+}
+
+$('form').on('submit', function (event) {
+    event.preventDefault();
+    if (!validate()) return;
+    $.ajax({
+        url: 'php/main.php',
+        dataType: "json",
+        data: $('form').serialize(),
+        beforeSend: () => $('.button').attr('disabled', 'disabled'),
+        success: function (data) {
+            $('.button').attr('disabled', false);
+            $('#result-table').append('<tr>'
+                + '<td>' + data.x + '</td>'
+                + '<td>' + data.y + '</td>'
+                + '<td>' + data.r + '</td>'
+                + '<td>' + data.hit + '</td>'
+                + '<td>' + data.curtime + '</td>'
+                + '<td>' + data.exectime + '</td>');
+        },
+        statusCode: {
+            400: () => alert("Somethig went wrong with parameters")
+        },
+        error: () => alert("Something went wrong!")
     });
 });
