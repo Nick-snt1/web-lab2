@@ -1,12 +1,8 @@
 function onlyOne(checkbox) {
     document.getElementsByName('r').forEach(item => { if (item !== checkbox) item.checked = false })
-    
-    $('input[type="checkbox"]:checked').is(":checked") ? $('.a').removeClass('invalid') : $('.a').addClass('invalid');
+    $('input[type="checkbox"]:checked').is(":checked") ? $('.button-label').removeClass('invalid') : $('.button-label').addClass('invalid');
 
 }
-
-
-
 
 function validate() {
     return $("input[type='radio']:checked").length === 1 && document.getElementById("y-field").validity.valid && $('input[type="checkbox"]:checked').is(":checked"); 
