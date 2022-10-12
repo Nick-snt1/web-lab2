@@ -51,16 +51,12 @@ input:invalid {
 #header {
     font-size: 25px;
     padding: 2%;
-    background-color: #22ffd6
+    background-color: #22ffd6;
 }
 
 .head-label {
     font-size: 20px;
 }
-
-
-
-
 
 .head-label#x {
     font-size: 20px;
@@ -139,7 +135,7 @@ input[type=checkbox] {
 
 input[type="checkbox"]:checked+.button-label {
     background-color: #555555;
-    color: white;;
+    color: white;
 }
 
 .button-label.invalid{
@@ -210,7 +206,7 @@ input[type="checkbox"]:checked+.button-label {
 
 #image-container{
     padding: 2%;
-    background-color: #22ffd6
+    background-color: #22ffd6;
 }
 
 .left-alignment {

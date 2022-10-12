@@ -1,5 +1,5 @@
 function onlyOne(checkbox) {
-    document.getElementsByName('r').forEach(item => { if (item !== checkbox) item.checked = false })
+    document.getElementsByName('r').forEach(item => { if (item !== checkbox) item.checked = false });
     $('input[type="checkbox"]:checked').is(":checked") ? $('.button-label').removeClass('invalid') : $('.button-label').addClass('invalid');
 
 }
@@ -18,7 +18,7 @@ $('form').on('submit', function (event) {
         beforeSend: () => $('.button').attr('disabled', 'disabled'),
         success: function (data) {
             $('.button').attr('disabled', false);
-            $('#result-table').append('<tr>'
+            $('#result-table').append('<tr class="removable">'
                 + '<td>' + data.x + '</td>'
                 + '<td>' + data.y + '</td>'
                 + '<td>' + data.r + '</td>'
@@ -31,4 +31,37 @@ $('form').on('submit', function (event) {
         },
         error: () => alert("Something went wrong!")
     });
+});
+
+$(document).ready(function () {
+    $.ajax({
+        type: "POST",
+        url: 'php/get_table.php',
+        dataType: "json",
+        success: function(data) {
+            for (i = 0; i < Object.keys(data).length; i++) {
+                row = data[''+ i];
+                $('#result-table').append('<tr class="removable">'
+                    + '<td>' + row.x + '</td>'
+                    + '<td>' + row.y + '</td>'
+                    + '<td>' + row.r + '</td>'
+                    + '<td>' + row.hit + '</td>'
+                    + '<td>' + row.curtime + '</td>'
+                    + '<td>' + row.exectime + '</td>');
+            }
+        },    
+    });
+});
+
+$('input.button[type=button]').click(function () {
+    $('.button-label').removeClass('invalid')
+    document.getElementsByName('r').forEach(item => item.checked = item.value == '1' ? true : false);
+    document.getElementsByName('x').forEach(item => item.checked = item.value == '0' ? true : false);
+    $('#y-field').val('0');
+    $.ajax({
+        url: 'php/clear_table.php',
+        success: () => $('#result-table tr.removable').remove(),
+        error: (x, y, z) => alert(x + y + z)
+    });
+
 });

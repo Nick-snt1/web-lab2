@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function validate($x, $y, $r) {
     return isset($x) && isset($y) && isset($r) && is_numeric($x) && is_numeric($r) && is_numeric($y) && $y >= -5 && $y <= 5; 
 }
@@ -25,20 +27,23 @@ $r = $_GET["r"];
 if (!validate($x, $y, $r)) {
     http_response_code(400);
 } else {
-    $time = time();
+    $time = date('H:i:s', time());
     $hit = hitTriangle($x, $y, $r) || hitSquare($x, $y, $r) || hitCircle($x, $y, $r) ? "Hit" : "Miss" ;
-    $exec_time = microtime(true) - $start_time;
+    $exec_time = round((microtime(true) - $start_time)*1000, 6);
 
-    $data = '{' .
-        "\"x\":\"$x\"," .
-        "\"y\":\"$y\"," .
-        "\"r\":\"$r\"," .
-        "\"curtime\":\"$time\"," .
-        "\"exectime\":\"$exec_time\"," .
-        "\"hit\":\"$hit\"" .
-    "}";
+    $data = array(
+        'x' => $x,
+        'y' => $y,
+        'r' => $r,
+        'hit' => $hit,
+        'curtime' => $time,
+        'exectime' => $exec_time
+    );
 
-    echo $data;
+    echo json_encode($data);
+
+    (!isset($_SESSION['data'])) ? $_SESSION['data'] = array($data) : array_push($_SESSION['data'], $data);
+
 }
 
 ?>
