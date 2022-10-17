@@ -2,7 +2,7 @@
 
 
 $_SESSION['data'] = array();
-echo "Try to clear"
+
 
 ?>
 

@@ -1,11 +1,21 @@
 function onlyOne(checkbox) {
-    document.getElementsByName('r').forEach(item => { if (item !== checkbox) item.checked = false });
+    document.getElementsByName('r').forEach((item) => { if (item !== checkbox) item.checked = false; });
     $('input[type="checkbox"]:checked').is(":checked") ? $('.button-label').removeClass('invalid') : $('.button-label').addClass('invalid');
 
 }
 
 function validate() {
     return $("input[type='radio']:checked").length === 1 && document.getElementById("y-field").validity.valid && $('input[type="checkbox"]:checked').is(":checked"); 
+}
+
+function getRow(obj) {
+    return '<tr class="removable">'
+        + '<td>' + obj.x + '</td>'
+        + '<td>' + obj.y + '</td>'
+        + '<td>' + obj.r + '</td>'
+        + '<td>' + obj.hit + '</td>'
+        + '<td>' + obj.curtime + '</td>'
+        + '<td>' + obj.exectime + '</td>';
 }
 
 $('form').on('submit', function (event) {
@@ -18,13 +28,7 @@ $('form').on('submit', function (event) {
         beforeSend: () => $('.button').attr('disabled', 'disabled'),
         success: function (data) {
             $('.button').attr('disabled', false);
-            $('#result-table').append('<tr class="removable">'
-                + '<td>' + data.x + '</td>'
-                + '<td>' + data.y + '</td>'
-                + '<td>' + data.r + '</td>'
-                + '<td>' + data.hit + '</td>'
-                + '<td>' + data.curtime + '</td>'
-                + '<td>' + data.exectime + '</td>');
+            $('#result-table').append(getRow(data));
         },
         statusCode: {
             400: () => alert("Somethig went wrong with parameters")
@@ -34,34 +38,26 @@ $('form').on('submit', function (event) {
 });
 
 $(document).ready(function () {
+    alert("Ready");
     $.ajax({
-        type: "POST",
         url: 'php/get_table.php',
         dataType: "json",
         success: function(data) {
             for (i = 0; i < Object.keys(data).length; i++) {
-                row = data[''+ i];
-                $('#result-table').append('<tr class="removable">'
-                    + '<td>' + row.x + '</td>'
-                    + '<td>' + row.y + '</td>'
-                    + '<td>' + row.r + '</td>'
-                    + '<td>' + row.hit + '</td>'
-                    + '<td>' + row.curtime + '</td>'
-                    + '<td>' + row.exectime + '</td>');
+                $('#result-table').append(getRow(data[i]));
             }
-        },    
+        }    
     });
 });
 
 $('input.button[type=button]').click(function () {
-    $('.button-label').removeClass('invalid')
-    document.getElementsByName('r').forEach(item => item.checked = item.value == '1' ? true : false);
-    document.getElementsByName('x').forEach(item => item.checked = item.value == '0' ? true : false);
+    $('.button-label').removeClass('invalid');
+    document.getElementsByName('r').forEach(item => item.checked = item.value === '1');
+    document.getElementsByName('x').forEach(item => item.checked = item.value === '0');
     $('#y-field').val('0');
     $.ajax({
         url: 'php/clear_table.php',
         success: () => $('#result-table tr.removable').remove(),
         error: (x, y, z) => alert(x + y + z)
     });
-
 });
