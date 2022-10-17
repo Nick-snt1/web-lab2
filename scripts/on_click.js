@@ -38,7 +38,6 @@ $('form').on('submit', function (event) {
 });
 
 $(document).ready(function () {
-    alert("Ready");
     $.ajax({
         url: 'php/get_table.php',
         dataType: "json",
@@ -46,7 +45,8 @@ $(document).ready(function () {
             for (i = 0; i < Object.keys(data).length; i++) {
                 $('#result-table').append(getRow(data[i]));
             }
-        }    
+        },
+        error: (x, y, z) => alert(x + y + z) 
     });
 });
 

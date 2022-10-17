@@ -42,7 +42,11 @@ if (!validate($x, $y, $r)) {
 
     echo json_encode($data);
 
-    (!isset($_SESSION['data'])) ? $_SESSION['data'] = array($data) : array_push($_SESSION['data'], $data);
+    if (!isset($_SESSION['data'])) {
+        $_SESSION['data'] = array($data); 
+    } else {
+        array_push($_SESSION['data'], $data);
+    } 
 
 }
 
