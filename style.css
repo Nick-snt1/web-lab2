@@ -20,6 +20,25 @@ body {
     padding: 2%;
 }
 
+#image-container {
+    padding: 2%;
+    background-color: #555555;
+    border-radius: 10px;
+    min-width: 280px;
+    min-height: 280px;
+}
+
+#input-container {
+    min-width: 490px;
+}
+
+.scroll-container {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
 #result-table {
     width: 100%;
     margin: auto;
@@ -35,29 +54,9 @@ body {
 }
 
 
-#result-table tr:nth-child(odd) {
-    background-color: #555555;
-    color: #f5f5f5;
-    border-radius: 10px;
-}
-
-.scroll-container {
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-input:invalid {
-    background-color: red;
-    border-color: red;
-    color: white;
-}
-
 #header {
     font-size: 25px;
     padding: 2%;
-    background-color: #555555;
-    color: #f5f5f5;
     border-radius: 10px;
 }
 
@@ -83,18 +82,6 @@ input:invalid {
     display: none;
 }
 
-.radio-group label {
-    font-weight: bold;
-    display: inline-flex;
-    line-height: 34px;
-    cursor: pointer;
-    padding: 0px 15px;
-    border: 1px solid #555555;
-    border-right: none;
-    user-select: none;
-    background-color: #f5f5f5;
-    transition-duration: 0.4s;
-}
 
 .radio-group .radio-item:first-child label {
     border-radius: 6px 0 0 6px;
@@ -102,120 +89,95 @@ input:invalid {
 
 .radio-group .radio-item:last-child label {
     border-radius: 0 6px 6px 0;
-    border-right: 1px solid #555555;
+    border-right: 2px solid #555555;
 }
 
-.radio-group input[type=radio]:checked+label {
+#header,
+.button:hover,
+.button-label:hover,
+.radio-group label:hover , 
+.radio-group input[type=radio]:checked+label,
+#result-table tr:nth-child(odd),
+input[type="checkbox"]:checked+.button-label {
     background-color: #555555;
     color: #f5f5f5;
 }
-
-.radio-group label:hover {
-    background-color: #555555;
-    color: #f5f5f5;
-}
-
-
-
-
-
-
-
 
 input[type=checkbox] {
     display: none;
 }
 
-.button-label {
-    font-weight: bold;
+
+.button-label { 
+    background: #f5f5f5;
     padding: 10px 20px;
     border: 1px solid #555555;
+    font-weight: bold;
     border-radius: 5px;
-    background: #f5f5f5;
     transition-duration: 0.4s;
 }
 
-.button-label:hover {
-    background-color: #555555;
-    color: white;
+
+.radio-group label {
+    display: inline-flex;
+    line-height: 34px;
+    cursor: pointer;
+    padding: 0px 15px;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    border: 1px solid #555555;
+    border-right: none;
+    transition-duration: 0.4s;
 }
-
-input[type="checkbox"]:checked+.button-label {
-    background-color: #555555;
-    color: white;
-}
-
-.button-label.invalid{
-    background-color: red;
-    border-color: red;
-    color: white;
-}
-
-
-
 
 
 #y-field {
-    font-weight: bold;
-    padding: 10px 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-    border: 1px solid #555555;
-    outline: none;
-    border-radius: 5px;
-
-    transition-duration: 0.4s;
     background-color: #555555;
-    color: white;
+    border: 1px solid #555555;
+    padding: 10px 10px;
+    color: #f5f5f5;
+
+    font-weight: bold;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+}
+
+.button {
+    background-color: #f5f5f5;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    color:#555555;
+
+    border: 2px solid #555555;
+    font-size: 16px;
+    font-weight: bold;
+    transition-duration: 0.4s;
+    border-radius: 5px;
 }
 
 #y-field:focus {
     background-color: #f5f5f5;
-    color: #000;
+    color: #555555;
 }
 
+input:invalid,
+.button-label.invalid,
+#y-field:invalid, 
 #y-field:focus:invalid {
-    background-color: red;
-    color: white;
-}
-
-#y-field:invalid {
     background-color: red;
     border-color: red;
     color: white;
 }
 
-
-
-
-.button {
-    background-color: #f5f5f5;
-    border: 2px solid #555555;
-    padding: 16px 32px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.button:hover {
-    background-color: #555555;
-    color: white;
-}
 
 #line{
     text-indent: 23px;
     text-align: left;
 }
 
-#image-container{
-    padding: 2%;
-    background-color: #555555;
-    border-radius: 10px;
-}
 
 .left-alignment {
     float: left;
