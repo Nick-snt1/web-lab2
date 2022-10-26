@@ -27,7 +27,7 @@ $r = $_GET["r"];
 if (!validate($x, $y, $r)) {
     http_response_code(400);
 } else {
-    $time = date('H:i:s', time());
+    $time = date('Y-m-d H:i:s', time()+3600*3);
     $hit = hitTriangle($x, $y, $r) || hitSquare($x, $y, $r) || hitCircle($x, $y, $r) ? "Hit" : "Miss" ;
     $exec_time = round((microtime(true) - $start_time)*1000, 6);
 

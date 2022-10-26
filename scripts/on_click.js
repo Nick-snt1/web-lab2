@@ -42,11 +42,9 @@ $(document).ready(function () {
         url: 'php/get_table.php',
         dataType: "json",
         success: function(data) {
-            for (i = 0; i < Object.keys(data).length; i++) {
-                $('#result-table').append(getRow(data[i]));
-            }
-        },
-        error: (x, y, z) => alert(x + y + z) 
+            for (i = 0; i < Object.keys(data).length; i++) 
+		$('#result-table').append(getRow(data[i]));
+        }
     });
 });
 
@@ -57,7 +55,6 @@ $('input.button[type=button]').click(function () {
     $('#y-field').val('0');
     $.ajax({
         url: 'php/clear_table.php',
-        success: () => $('#result-table tr.removable').remove(),
-        error: (x, y, z) => alert(x + y + z)
+        success: () => $('#result-table tr.removable').remove()
     });
 });
