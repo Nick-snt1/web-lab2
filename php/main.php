@@ -25,7 +25,8 @@ $r = $_GET["r"];
 
 
 if (!validate($x, $y, $r)) {
-    http_response_code(400);
+	http_response_code(400);
+	echo "Something wrong here: x = $x, y = $y, r = $r";
 } else {
     $time = date('Y-m-d H:i:s', time()+3600*3);
     $hit = hitTriangle($x, $y, $r) || hitSquare($x, $y, $r) || hitCircle($x, $y, $r) ? "Hit" : "Miss" ;

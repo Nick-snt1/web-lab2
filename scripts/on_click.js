@@ -31,7 +31,7 @@ $('form').on('submit', function (event) {
             $('#result-table').append(getRow(data));
         },
         statusCode: {
-            400: () => alert("Somethig went wrong with parameters")
+            400: (x) => alert(x)
         },
         error: () => alert("Something went wrong!")
     });
