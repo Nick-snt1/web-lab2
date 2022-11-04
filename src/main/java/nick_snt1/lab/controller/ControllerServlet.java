@@ -1,5 +1,7 @@
 package nick_snt1.lab.controller;
 
+import java.util.*;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,11 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException , IOException {
-        resp.getWriter().write("Method doGet in ControllerSevlet");
+        if ( Arrays.stream(new String[]{req.getParameter("x"), req.getParameter("y"), req.getParameter("r")}).allMatch(x -> x != null) )
+            getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
+        else if (req.getParameter("get_table") != null)
+            getServletContext().getNamedDispatcher("GetTableServlet").forward(req, resp);
+        else if (req.getParameter("clear_table") != null)
+            getServletContext().getNamedDispatcher("ClearTableServlet").forward(req, resp);
     }
 }

@@ -22,13 +22,14 @@ $('form').on('submit', function (event) {
     event.preventDefault();
     if (!validate()) return;
     $.ajax({
-        url: 'php/main.php',
-        dataType: "json",
+        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet',
+        dataType: "text",//"json",
         data: $('form').serialize(),
         beforeSend: () => $('.button').attr('disabled', 'disabled'),
         success: function (data) {
             $('.button').attr('disabled', false);
-            $('#result-table').append(getRow(data));
+            alert(data);
+            //$('#result-table').append(getRow(data));
         },
         statusCode: {
             400: (x) => alert(x)
@@ -39,7 +40,7 @@ $('form').on('submit', function (event) {
 
 $(document).ready(function () {
     $.ajax({
-        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet',
+        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?get_table=1',
         dataType: "text",
         success: function(data) { alert(data); }
         //for (i = 0; i < Object.keys(data).length; i++) $('#result-table').append(getRow(data[i]));
@@ -52,7 +53,7 @@ $('input.button[type=button]').click(function () {
     document.getElementsByName('x').forEach(item => item.checked = item.value === '0');
     $('#y-field').val('0');
     $.ajax({
-        url: 'php/clear_table.php',
-        success: () => $('#result-table tr.removable').remove()
+        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?clear_table=1',
+        success: (data) => alert(data)//$('#result-table tr.removable').remove()
     });
 });
