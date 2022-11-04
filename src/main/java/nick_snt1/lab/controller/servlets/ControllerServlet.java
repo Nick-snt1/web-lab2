@@ -1,4 +1,4 @@
-package nick_snt1.lab.controller;
+package nick_snt1.lab.controller.servlets;
 
 import java.util.*;
 

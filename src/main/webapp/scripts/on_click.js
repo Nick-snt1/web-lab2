@@ -23,13 +23,12 @@ $('form').on('submit', function (event) {
     if (!validate()) return;
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet',
-        dataType: "text",//"json",
+        dataType: "json",
         data: $('form').serialize(),
         beforeSend: () => $('.button').attr('disabled', 'disabled'),
         success: function (data) {
             $('.button').attr('disabled', false);
-            alert(data);
-            //$('#result-table').append(getRow(data));
+            $('#result-table').append(getRow(data));
         },
         statusCode: {
             400: (x) => alert(x)
@@ -41,9 +40,11 @@ $('form').on('submit', function (event) {
 $(document).ready(function () {
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?get_table=1',
-        dataType: "text",
-        success: function(data) { alert(data); }
-        //for (i = 0; i < Object.keys(data).length; i++) $('#result-table').append(getRow(data[i]));
+        dataType: "json",
+        success: function(data) {  
+            for (i = 0; i < Object.keys(data).length; i++) 
+                $('#result-table').append(getRow(data[i])); 
+        }
     });
 });
 
@@ -54,6 +55,6 @@ $('input.button[type=button]').click(function () {
     $('#y-field').val('0');
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?clear_table=1',
-        success: (data) => alert(data)//$('#result-table tr.removable').remove()
+        success: () => $('#result-table tr.removable').remove()
     });
 });
