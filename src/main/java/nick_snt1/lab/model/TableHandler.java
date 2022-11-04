@@ -12,7 +12,7 @@ public class TableHandler {
 
     public static void addRow(Map<String, String> row, HttpSession session) {
         JSONObject jo = getTableFromSession(session);
-        jo.put("" + jo.length(), new JSONObject(row).toString());
+        jo.put("" + jo.length(), new JSONObject(row));
         session.setAttribute(TABLE_NAME, jo);
     }
 

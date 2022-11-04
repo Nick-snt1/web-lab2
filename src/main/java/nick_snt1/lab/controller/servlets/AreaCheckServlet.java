@@ -1,9 +1,9 @@
 package nick_snt1.lab.controller.servlets;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -33,12 +33,11 @@ public class AreaCheckServlet extends HttpServlet {
             Map<String, String> row = Map.of(
                 "x", x, "y", y, "r", r, 
                 "hit", AreaChecker.isHit(x, y, r) ? "Hit" : "Miss", 
-                "curtime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss", Locale.US)),
-                "exectime", "" + (System.nanoTime() - startTime) / 1000000.0F
+                "curtime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) ,
+                "exectime", "" + (System.nanoTime() - startTime) / 1000000.0f
             );
 
             TableHandler.addRow(row, req.getSession());
-            
             resp.getWriter().write(new JSONObject(row).toString());
         }
 
