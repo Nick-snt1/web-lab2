@@ -39,12 +39,10 @@ $('form').on('submit', function (event) {
 
 $(document).ready(function () {
     $.ajax({
-        url: 'php/get_table.php',
-        dataType: "json",
-        success: function(data) {
-            for (i = 0; i < Object.keys(data).length; i++) 
-		$('#result-table').append(getRow(data[i]));
-        }
+        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet',
+        dataType: "text",
+        success: function(data) { alert(data); }
+        //for (i = 0; i < Object.keys(data).length; i++) $('#result-table').append(getRow(data[i]));
     });
 });
 
