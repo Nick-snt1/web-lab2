@@ -1,3 +1,8 @@
+var canvas = $("#graf");
+var ctx = canvas[0].getContext("2d");
+resizeCtxCanvas(ctx);
+
+
 function onlyOne(checkbox) {
     document.getElementsByName('r').forEach((item) => { if (item !== checkbox) item.checked = false; });
     $('input[type="checkbox"]:checked').is(":checked") ? $('.button-label').removeClass('invalid') : $('.button-label').addClass('invalid');
@@ -16,6 +21,13 @@ function getRow(obj) {
         + '<td>' + obj.hit + '</td>'
         + '<td>' + obj.curtime + '</td>'
         + '<td>' + obj.exectime + '</td>';
+}
+
+function resizeCtxCanvas(ctx) {
+    const { width, height } = ctx.canvas.getBoundingClientRect();
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
+    //ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
 $('form').on('submit', function (event) {
@@ -38,6 +50,9 @@ $('form').on('submit', function (event) {
 });
 
 $(document).ready(function () {
+    
+    resizeCtxCanvas($("#graf")[0].getContext("2d"));
+
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?get_table=1',
         dataType: "json",
@@ -46,6 +61,8 @@ $(document).ready(function () {
                 $('#result-table').append(getRow(data[i])); 
         }
     });
+
+
 });
 
 $('input.button[type=button]').click(function () {
@@ -58,3 +75,18 @@ $('input.button[type=button]').click(function () {
         success: () => $('#result-table tr.removable').remove()
     });
 });
+
+
+window.addEventListener('resize', e => {
+    resizeCtxCanvas(ctx);
+});
+
+canvas.click((e) => {
+    var x = e.offsetX
+        y = e.offsetY;
+
+    var circle = new Path2D();
+    circle.arc(x, y, 6, 0, 2 * Math.PI);
+    ctx.fillStyle = "#f5f5f5";
+    ctx.fill(circle);
+})

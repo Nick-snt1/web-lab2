@@ -1,6 +1,7 @@
+<!--
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+-->
 <!DOCTYPE html>
 
 <html lang="en">
@@ -21,9 +22,10 @@
         <!--/header-->
         <!--body-->
         <tr>
-            <td id="image-container">
-                <div class="image">
-                    <object type="image/svg+xml" data="images/pic.svg" width="100%", height="100%">
+            <td >
+                <div id="image-container">
+                    <canvas id="graf" ></canvas>
+                    <object type="image/svg+xml" data="images/pic.svg" width="100%" height="100%">
                         Your browser does not support svg
                     </object>
                 </div>
