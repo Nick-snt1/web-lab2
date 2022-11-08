@@ -1,5 +1,5 @@
-var canvas = $("#graf");
-var ctx = canvas[0].getContext("2d");
+var ctx = $("#graf")[0].getContext("2d");
+
 resizeCtxCanvas(ctx);
 
 
@@ -27,7 +27,25 @@ function resizeCtxCanvas(ctx) {
     const { width, height } = ctx.canvas.getBoundingClientRect();
     ctx.canvas.width = width;
     ctx.canvas.height = height;
-    //ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
+function redrawDots(ctx) {
+    for (let dot of Object.values(localStorage)) {
+        var circle = new Path2D();
+        dot = JSON.parse(dot);
+        circle.arc(dot.x * (ctx.canvas.width / dot.canvas_size), dot.y * (ctx.canvas.width / dot.canvas_size), 8, 0, 2 * Math.PI);
+        ctx.fillStyle = "#f5f5f5";
+        ctx.fill(circle);
+    }
+}
+
+function removeDots(ctx) {
+    ctx.save();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    ctx.restore();
 }
 
 $('form').on('submit', function (event) {
@@ -50,8 +68,8 @@ $('form').on('submit', function (event) {
 });
 
 $(document).ready(function () {
-    
-    resizeCtxCanvas($("#graf")[0].getContext("2d"));
+    //resizeCtxCanvas(ctx);
+    redrawDots(ctx);
 
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?get_table=1',
@@ -62,6 +80,8 @@ $(document).ready(function () {
         }
     });
 
+    
+
 
 });
 
@@ -70,6 +90,10 @@ $('input.button[type=button]').click(function () {
     document.getElementsByName('r').forEach(item => item.checked = item.value === '1');
     document.getElementsByName('x').forEach(item => item.checked = item.value === '0');
     $('#y-field').val('0');
+    localStorage.clear();
+    removeDots(ctx);
+
+
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?clear_table=1',
         success: () => $('#result-table tr.removable').remove()
@@ -77,16 +101,21 @@ $('input.button[type=button]').click(function () {
 });
 
 
-window.addEventListener('resize', e => {
+window.addEventListener('resize', () => {
     resizeCtxCanvas(ctx);
+    redrawDots(ctx);
 });
 
-canvas.click((e) => {
+$("#graf").click((e) => {
     var x = e.offsetX
         y = e.offsetY;
 
     var circle = new Path2D();
-    circle.arc(x, y, 6, 0, 2 * Math.PI);
+    
+    localStorage.setItem(localStorage.length, 
+        JSON.stringify({ x: x, y: y, canvas_size: ctx.canvas.width }));
+
+    circle.arc(x, y, 8, 0, 2 * Math.PI);
     ctx.fillStyle = "#f5f5f5";
     ctx.fill(circle);
 })
