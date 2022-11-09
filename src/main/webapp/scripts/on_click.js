@@ -63,7 +63,7 @@ function transformCoords(x, y, half_canvas_size) {
 
 function sendData(data) {
     $.ajax({
-        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet',
+        url: 'http://127.0.0.1:3107/web-lab2/controller_servlet',
         dataType: "json",
         data: data,
         beforeSend: () => $('.button').attr('disabled', 'disabled'),
@@ -90,7 +90,7 @@ $(document).ready(function () {
     redrawDots(ctx);
 
     $.ajax({
-        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?get_table=1',
+        url: 'http://127.0.0.1:3107/web-lab2/controller_servlet?get_table=1',
         dataType: "json",
         success: function(data) {  
             for (i = 0; i < Object.keys(data).length; i++) 
@@ -109,7 +109,7 @@ $('input.button[type=button]').click(function () {
 
 
     $.ajax({
-        url: 'http://127.0.0.1:8080/web-lab2/controller_servlet?clear_table=1',
+        url: 'http://127.0.0.1:3107/web-lab2/controller_servlet?clear_table=1',
         success: () => $('#result-table tr.removable').remove()
     });
 });

@@ -1,14 +1,12 @@
-<!--
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
--->
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
-    <title>Lab1</title>
+    <title>Lab2</title>
 </head>
 <body>
     <table class="grid" id="main-grid">
@@ -16,7 +14,7 @@
         <tr>
             <td id="header" colspan="2">
                 <span class="left-alignment">Vladimirov Nikita Alekseevich</span>
-                <span class="right-alignment">#3305</span>
+                <span class="right-alignment">#698260</span>
             </td>
         </tr>
         <!--/header-->
