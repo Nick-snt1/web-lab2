@@ -5,12 +5,13 @@ resizeCtxCanvas(ctx);
 
 function onlyOne(checkbox) {
     document.getElementsByName('r').forEach((item) => { if (item !== checkbox) item.checked = false; });
-    $('input[type="checkbox"]:checked').is(":checked") ? $('.button-label').removeClass('invalid') : $('.button-label').addClass('invalid');
-
+    $('input[type="checkbox"]').is(":checked") 
+        ? $('.button-label').removeClass('invalid').removeClass('glowing_bottons') 
+        : $('.button-label').addClass('invalid');
 }
 
 function validate() {
-    return $("input[type='radio']:checked").length === 1 && document.getElementById("y-field").validity.valid && $('input[type="checkbox"]:checked').is(":checked"); 
+    return $("input[type='radio']:checked").length === 1 && document.getElementById("y-field").validity.valid && $('input[type="checkbox"]').is(":checked"); 
 }
 
 function getRow(obj) {
@@ -31,12 +32,16 @@ function resizeCtxCanvas(ctx) {
 
 function redrawDots(ctx) {
     for (let dot of Object.values(localStorage)) {
-        var circle = new Path2D();
         dot = JSON.parse(dot);
-        circle.arc(dot.x * (ctx.canvas.width / dot.canvas_size), dot.y * (ctx.canvas.width / dot.canvas_size), 8, 0, 2 * Math.PI);
-        ctx.fillStyle = "#f5f5f5";
-        ctx.fill(circle);
+        drawDot(ctx, dot.x * (ctx.canvas.width / dot.canvas_size), dot.y * (ctx.canvas.width / dot.canvas_size));
     }
+}
+
+function drawDot(ctx, x, y) {
+    let circle = new Path2D();
+    circle.arc(x, y, 8, 0, 2*Math.PI);
+    ctx.fillStyle = "#f5f5f5";
+    ctx.fill(circle);
 }
 
 function removeDots(ctx) {
@@ -48,13 +53,19 @@ function removeDots(ctx) {
     ctx.restore();
 }
 
-$('form').on('submit', function (event) {
-    event.preventDefault();
-    if (!validate()) return;
+function transformCoords(x, y, half_canvas_size) {
+    r = Number($('input[type="checkbox"]:checked').val());
+    x = ((x - half_canvas_size) * ((r + (r * 0.705)) / half_canvas_size)).toFixed(5);
+    y = (((-1 * (y - half_canvas_size))) * ((r + (r * 0.705)) / half_canvas_size)).toFixed(5);
+    return {x: x, y: y, r: r};
+
+}
+
+function sendData(data) {
     $.ajax({
         url: 'http://127.0.0.1:8080/web-lab2/controller_servlet',
         dataType: "json",
-        data: $('form').serialize(),
+        data: data,
         beforeSend: () => $('.button').attr('disabled', 'disabled'),
         success: function (data) {
             $('.button').attr('disabled', false);
@@ -65,7 +76,14 @@ $('form').on('submit', function (event) {
         },
         error: () => alert("Something went wrong!")
     });
+}
+
+$('form').on('submit', function (event) {
+    event.preventDefault();
+    if (!validate()) return;
+    sendData($('form').serialize());
 });
+
 
 $(document).ready(function () {
     //resizeCtxCanvas(ctx);
@@ -79,14 +97,10 @@ $(document).ready(function () {
                 $('#result-table').append(getRow(data[i])); 
         }
     });
-
-    
-
-
 });
 
 $('input.button[type=button]').click(function () {
-    $('.button-label').removeClass('invalid');
+    $('.button-label').removeClass('invalid').removeClass('glowing_bottons');
     document.getElementsByName('r').forEach(item => item.checked = item.value === '1');
     document.getElementsByName('x').forEach(item => item.checked = item.value === '0');
     $('#y-field').val('0');
@@ -106,16 +120,24 @@ window.addEventListener('resize', () => {
     redrawDots(ctx);
 });
 
+
 $("#graf").click((e) => {
     var x = e.offsetX
         y = e.offsetY;
 
-    var circle = new Path2D();
-    
-    localStorage.setItem(localStorage.length, 
-        JSON.stringify({ x: x, y: y, canvas_size: ctx.canvas.width }));
+    if ($('input[type="checkbox"]:checked').is(":checked")) {
+        localStorage.setItem(localStorage.length,
+            JSON.stringify({ x: x, y: y, canvas_size: ctx.canvas.width }));
 
-    circle.arc(x, y, 8, 0, 2 * Math.PI);
-    ctx.fillStyle = "#f5f5f5";
-    ctx.fill(circle);
-})
+        drawDot(ctx, x, y);
+
+        sendData(transformCoords(x, y, ctx.canvas.width / 2));
+    } else {
+        $('.button-label').addClass('glowing_bottons');
+    }
+});
+
+
+
+
+

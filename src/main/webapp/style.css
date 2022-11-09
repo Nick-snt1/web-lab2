@@ -5,6 +5,27 @@ body {
     background-color: black;
 }
 
+@keyframes glowing {
+    0% {
+        background-color: red;
+        box-shadow: 0 0 5px red;
+    }
+
+    50% {
+        background-color: rgb(250, 44, 44);
+        box-shadow: 0 0 20px rgb(250, 44, 44);
+    }
+
+    100% {
+        background-color: red;
+        box-shadow: 0 0 5px red;
+    }
+}
+
+.glowing_bottons {
+    animation: 1s glowing infinite; 
+}
+
 #main-grid {
     width: 100%;
     border-spacing: 5px;
